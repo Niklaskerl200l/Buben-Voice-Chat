@@ -38,6 +38,14 @@ How does Proximity Voice Chat behave in-game:
 - Dead players hear all living players nearby
 - At the beginning and end of the round, everyone on the map can hear each other
 
+For Server Admin default Variables:
+
+- Buben_Max_Voice_Range = 1500
+- Buben_Proximity_Chat_Enable = 1
+- Buben_Voice_Auto_Enable = 0
+- Buben_Voice_Hide_Panels_Alive = 0
+- Buben_Voice_Hide_Panels_Spectator = 0
+
 This addon is based on / further developed from:
 
 - 3D Proximity Chat
