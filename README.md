@@ -1,3 +1,5 @@
+Version: 2.1.3
+
 TTT / TTT2 3D Proximity Voice Chat
 
 Compatible only with TTT2.
