@@ -44,10 +44,12 @@ function Voice_Auto_Enable()
     end 
 end
 
-
-function Voice_Chat_Relode(len)
-    voice_toggle()
-    timer.Simple(1, function() voice_toggle() end)
+-- Voice Chat Relod um im Panel die Richtige Farbe anzuzeigen (gelb oder grün)
+function Voice_Chat_Relode(len) 
+    if (TTT2 and VOICE.IsSpeaking() == true) or sandbox_is_speaking == true then
+        voice_toggle()
+        timer.Simple(1, function() voice_toggle() end)
+    end
 end
 
 
