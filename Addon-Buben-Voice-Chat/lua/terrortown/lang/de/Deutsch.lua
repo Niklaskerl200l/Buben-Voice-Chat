@@ -2,7 +2,7 @@ local L = LANG.GetLanguageTableReference("de")
 
 L["Title_Addons_Buben_Voice_Chat"] = "Buben Voice Chat"
 L["Header_Proximity_Voice_Chat"] = "Proximity Chat Voice Settings"
-L["Help_Proximity_Voice_Chat"] = "Mit den Schiebereglern können Sie die Reichweite des globalen Voice-Chats anpassen"
+L["Help_Proximity_Voice_Chat"] = "Mit den Schiebereglern kann die Reichweite des globalen Voice-Chats angepasst werden"
 L["Label_Max_Voice_Range"] = "Reichweite des Voice-Chats"
 L["Label_Proximity_Chat_Enable"] = "3D-Voice-Chat Aktivieren"
 
