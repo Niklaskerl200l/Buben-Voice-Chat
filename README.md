@@ -1,7 +1,7 @@
 
 # TTT2 3D Proximity Voice Chat / Voice Activation Addon
 
-Only compatible with TTT2
+Only compatible with [TTT2]
 
 Steam: [Buben Voice Chat](https://steamcommunity.com/sharedfiles/filedetails/?id=3157291533)
 
