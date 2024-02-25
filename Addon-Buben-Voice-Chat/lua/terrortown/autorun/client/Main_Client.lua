@@ -12,7 +12,7 @@ local CV_Hide_Panels_Spectator = CreateConVar("Buben_Voice_Hide_Panels_Spectator
 --------------------------------- Funktionen ---------------------------------
 
 
-function voice_enable()
+local function voice_enable()
     if TTT2 then
         if VOICE.CanSpeak() == false then return false end
         if hook.Run("TTT2CanUseVoiceChat", LocalPlayer(), false) == false then return false end
@@ -24,14 +24,14 @@ function voice_enable()
 end
 
 
-function voice_disable()
+local function voice_disable()
     permissions.EnableVoiceChat(false)
     sandbox_is_speaking = false
     return true
 end
 
 
-function voice_toggle()
+local function voice_toggle()
     if (TTT2 and VOICE.IsSpeaking() == false) or sandbox_is_speaking == false then
         return voice_enable()
     else
@@ -40,14 +40,14 @@ function voice_toggle()
 end
 
 
-function Voice_Auto_Enable()
+local function Voice_Auto_Enable()
     if CV_Auto_Enable:GetBool() then 
         voice_enable() 
     end 
 end
 
 -- Voice Chat Relod um im Panel die Richtige Farbe anzuzeigen (gelb oder grün)
-function Voice_Chat_Relode(len) 
+local function Voice_Chat_Relode(len) 
     if (TTT2 and VOICE.IsSpeaking() == true) or sandbox_is_speaking == true then
         voice_toggle()
         timer.Simple(1, function() voice_toggle() end)
@@ -55,7 +55,7 @@ function Voice_Chat_Relode(len)
 end
 
 
-function Voice_Chat_Initialize()
+local function Voice_Chat_Initialize()
     -- key binding for toggling voice chat
     bind.Register(
         "voice_toggle",
