@@ -45,6 +45,9 @@ Through the Tab Menu, the volume of each player can be adjusted. Next to each na
 - Buben_Voice_Hide_Panels_Alive = 0
 - Buben_Voice_Hide_Panels_Spectator = 0
 
+## How to Install Addons
+Steam Install Guid: [How to Install Addons to Garry's Mod](https://steamcommunity.com/sharedfiles/filedetails/?id=2779576036)
+
 ## This addon is based on / further developed from
 - 3D Proximity Chat
 - Simple volume control
