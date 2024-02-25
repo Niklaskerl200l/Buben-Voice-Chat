@@ -1,0 +1,1 @@
+CreateConVar("ttt_mute_spactator_check", "0")
