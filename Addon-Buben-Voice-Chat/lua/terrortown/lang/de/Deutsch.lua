@@ -11,3 +11,6 @@ L["Help_Voice_Hide_Panels"] = "Anzeigeeinstellungen der Voice-Chat-Panels der an
 L["Label_Voice_Auto_Enable"] = "Voice-Chat für Spieler beim Beitritt automatisch aktivieren"
 L["Label_Voice_Hide_Panels_Alive"] = "Voice-Chat-Panels ausblenden, die anzeigen wer spricht, wenn der Spieler selbst lebt"
 L["Label_Voice_Hide_Panels_Spectator"] = "Voice-Chat-Panels ausblenden, die anzeigen wer spricht, wenn der Spieler selbst zuschauer ist"
+
+L["submenu_gameplay_voiceandvolume_title_2"] = "Sprache & Lautstärke 2"
+L["label_spactator_mute"] = "Stelle alle außer die lebende Spieler stumm, wenn du tot bist"

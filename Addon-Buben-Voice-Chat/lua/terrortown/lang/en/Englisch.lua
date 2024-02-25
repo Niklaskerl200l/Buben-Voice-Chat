@@ -11,3 +11,6 @@ L["Help_Voice_Hide_Panels"] = "Voice Chat Panels Display Settings"
 L["Label_Voice_Auto_Enable"] = "Automatically enable voice chat for players when they join"
 L["Label_Voice_Hide_Panels_Alive"] = "Hide the voice panels that show who else is talking when player is alive"
 L["Label_Voice_Hide_Panels_Spectator"] = "Hide the voice panels that show who else is talking when player is Spectating"
+
+L["submenu_gameplay_voiceandvolume_title_2"] = "Voice & Volume 2"
+L["label_spactator_mute"] = "Mute all but the living players when dead"
