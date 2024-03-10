@@ -1,11 +1,11 @@
-print("Buben Voice Chat v2.1.3 by Niklaskerl2001")
+print("Buben Voice Chat v2.1.4 by Niklaskerl2001")
 
 --------------------------------- Funktionen ---------------------------------
 
 function Proximity_Voice_Chat (listener,talker)
 	-- Wenn Runde nicht läuf hören sich alle & überall
 	if GetRoundState() ~= ROUND_ACTIVE then
-		return true, false
+		return true, GetConVar("Buben_Proximity_Chat_Enable_Always"):GetBool()
 	
 	-- Das sich die Spectater gegenseitig hören
 	elseif listener:IsSpec() and talker:IsSpec() then

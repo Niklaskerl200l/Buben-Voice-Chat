@@ -5,6 +5,7 @@ L["Header_Proximity_Voice_Chat"] = "Proximity Chat Voice Settings"
 L["Help_Proximity_Voice_Chat"] = "Mit den Schiebereglern kann die Reichweite des globalen Voice-Chats angepasst werden"
 L["Label_Max_Voice_Range"] = "Reichweite des Voice-Chats"
 L["Label_Proximity_Chat_Enable"] = "3D-Voice-Chat Aktivieren"
+L["Label_Proximity_Chat_Enable_Always"] = "3D-Voice-Chat Aktivieren Immer"
 
 L["Header_Voice_Toggle"] = "Sprachaktivierungs Einstellungen"
 L["Help_Voice_Hide_Panels"] = "Anzeigeeinstellungen der Voice-Chat-Panels der anderen Spieler (oben Links)"

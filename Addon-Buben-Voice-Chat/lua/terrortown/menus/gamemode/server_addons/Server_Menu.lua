@@ -23,6 +23,11 @@ function CLGAMEMODESUBMENU:Populate(parent)
 		label = "Label_Proximity_Chat_Enable",
 	})
 
+	Form_Voice_Chat:MakeCheckBox({
+		serverConvar = "Buben_Proximity_Chat_Enable_Always",
+		label = "Label_Proximity_Chat_Enable_Always",
+	})
+
 
 	-- Form Voice Panels Toggel
 
