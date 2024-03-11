@@ -11,8 +11,24 @@ function CLGAMEMODESUBMENU:Populate(parent)
 	})
 
 	Form_Voice_Chat:MakeSlider({
-		serverConvar = "Buben_Max_Voice_Range",
-		label = "Label_Max_Voice_Range",
+		serverConvar = "Buben_Voice_Range_Whisper",
+		label = "Label_Voice_Range_Whisper",
+		min = 0,
+		max = 5000,
+		decimal = 0
+	})
+
+	Form_Voice_Chat:MakeSlider({
+		serverConvar = "Buben_Voice_Range_Normal",
+		label = "Label_Voice_Range_Normal",
+		min = 0,
+		max = 5000,
+		decimal = 0
+	})
+
+	Form_Voice_Chat:MakeSlider({
+		serverConvar = "Buben_Voice_Range_Shout",
+		label = "Label_Voice_Range_Shout",
 		min = 0,
 		max = 5000,
 		decimal = 0

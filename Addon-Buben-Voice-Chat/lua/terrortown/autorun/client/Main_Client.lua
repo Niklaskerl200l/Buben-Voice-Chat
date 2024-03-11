@@ -2,15 +2,13 @@ print("Buben Voice Chat v2.1.3 by Niklaskerl2001")
 
 AddCSLuaFile()
 
-local sandbox_is_speaking = false
-
 local CV_Auto_Enable = CreateConVar("Buben_Voice_Auto_Enable", 0, { FCVAR_ARCHIVE, FCVAR_REPLICATED }, "Automatically enable voice chat for players when they join")
 local CV_Hide_Panels_Alive = CreateConVar("Buben_Voice_Hide_Panels_Alive", 0, { FCVAR_ARCHIVE, FCVAR_REPLICATED }, "Hide the voice panels that show who else is talking when player is alive")
 local CV_Hide_Panels_Spectator = CreateConVar("Buben_Voice_Hide_Panels_Spectator", 0, { FCVAR_ARCHIVE, FCVAR_REPLICATED }, "Hide the voice panels that show who else is talking when player is Spectating")
 
+local Show_VoiceRange = false
 
 --------------------------------- Funktionen ---------------------------------
-
 
 function voice_enable()
     if TTT2 then
@@ -19,20 +17,18 @@ function voice_enable()
     end
 
     permissions.EnableVoiceChat(true)
-    sandbox_is_speaking = true
     return true
 end
 
 
 function voice_disable()
     permissions.EnableVoiceChat(false)
-    sandbox_is_speaking = false
     return true
 end
 
 
 function voice_toggle()
-    if (TTT2 and VOICE.IsSpeaking() == false) or sandbox_is_speaking == false then
+    if (TTT2 and VOICE.IsSpeaking() == false) then
         return voice_enable()
     else
         return voice_disable()
@@ -48,11 +44,12 @@ end
 
 -- Voice Chat Relod um im Panel die Richtige Farbe anzuzeigen (gelb oder grün)
 function Voice_Chat_Relode(len) 
-    if (TTT2 and VOICE.IsSpeaking() == true) or sandbox_is_speaking == true then
+    if (TTT2 and VOICE.IsSpeaking() == true) then
         voice_toggle()
         timer.Simple(1, function() voice_toggle() end)
     end
 end
+
 
 
 function Voice_Chat_Initialize()
@@ -61,9 +58,18 @@ function Voice_Chat_Initialize()
         "voice_toggle",
         voice_toggle,
         function() return true end,
-        "header_bindings_ttt2",
-        "Toggle Global Voice Chat",
+        "header_bindings_other",
+        "Label_Voice_Toggle_Key",
         KEY_H
+    )
+
+    bind.Register(
+        "Voice_Whisper",
+        PlayerButtonDown_Whisper,
+        PlayerButtonUp_Whisper,
+        "header_bindings_other",
+        "Label_Voice_Whisper_Key",
+        KEY_X
     )
 
     -- disable top-left voice panels that show who else is talking
@@ -92,11 +98,42 @@ function Voice_Chat_Initialize()
 end
 
 
+--------------------------------- Show Voice Range ---------------------------------
+
+
+function PlayerButtonDown_Whisper()
+    Show_VoiceRange = true
+end
+
+function PlayerButtonUp_Whisper()
+    Show_VoiceRange = false
+end
+
+
+function Show_Voice_Range()
+    
+    if Show_VoiceRange then
+        local ply = LocalPlayer()
+        local pos = ply:GetPos()
+        local ang = Angle(0, 0, 0)
+
+        pos.z = pos.z + 1 -- adjust z to draw just above the ground
+
+        cam.Start3D2D(pos, ang, 1)
+            surface.SetDrawColor(255, 255, 255, 255) -- Set the draw color (R, G, B, A)
+            surface.DrawCircle(0, 0, 500) -- Draw the circle with radius 500
+        cam.End3D2D()
+    end
+end
+
 --------------------------------- Hooks ---------------------------------
 
 
 hook.Add("InitPostEntity", "Voice_Auto_Enable", Voice_Auto_Enable)
 hook.Add("TTT2Initialize", "voice_toggle/TTT2Initialize", Voice_Chat_Initialize)
+hook.Add("PostDrawOpaqueRenderables", "Draw Voice Range", Show_Voice_Range)
+--hook.Add("PlayerButtonDown", "Special Voice Range Button Down", PlayerButtonDown_Whisper)
+--hook.Add("PlayerButtonUp", "Special Voice Range Button Up", PlayerButtonUp_Whisper)
 
 net.Receive("Spieler_Tot_an_Client", Voice_Chat_Relode)
 net.Receive("Spieler_Spawn_an_Client", Voice_Chat_Relode)
