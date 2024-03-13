@@ -54,33 +54,8 @@ end
 
 
 function Voice_Chat_Initialize()
-    -- key binding for toggling voice chat
-    bind.Register(
-        "voice_toggle",
-        voice_toggle,
-        function() return true end,
-        "header_bindings_other",
-        "Label_Voice_Toggle_Key",
-        KEY_H
-    )
 
-    bind.Register(
-        "Voice_Whisper",
-        PlayerButtonDown_Whisper,
-        PlayerButtonUp_Whisper,
-        "header_bindings_other",
-        "Label_Voice_Whisper_Key",
-        KEY_X
-    )
-
-    bind.Register(
-        "Voice_Shout",
-        PlayerButtonDown_Shout,
-        PlayerButtonUp_Shout,
-        "header_bindings_other",
-        "Label_Voice_Shout_Key",
-        KEY_G
-    )
+    Register_Keys_Client()
 
     -- disable top-left voice panels that show who else is talking
     local old_PlayerStartVoice = GAMEMODE.PlayerStartVoice
@@ -107,6 +82,34 @@ function Voice_Chat_Initialize()
     end
 end
 
+function Register_Keys_Client()
+    bind.Register(
+        "voice_toggle",
+        voice_toggle,
+        function() return true end,
+        "Buben Voice Chat",
+        "Label_Voice_Toggle_Key",
+        KEY_H
+    )
+
+    bind.Register(
+        "Voice_Whisper",
+        PlayerButtonDown_Whisper,
+        PlayerButtonUp_Whisper,
+        "Buben Voice Chat",
+        "Label_Voice_Whisper_Key",
+        KEY_X
+    )
+
+    bind.Register(
+        "Voice_Shout",
+        PlayerButtonDown_Shout,
+        PlayerButtonUp_Shout,
+        "Buben Voice Chat",
+        "Label_Voice_Shout_Key",
+        KEY_G
+    )
+end
 
 --------------------------------- Show Voice Range ---------------------------------
 
@@ -139,15 +142,19 @@ function Show_Voice_Range()
         if Whisper_is_Active == true and Shout_is_Active == false then 
 
             cam.Start3D2D(pos, ang, 1)
+                cam.IgnoreZ(true) -- Ignoriere die Tiefenprüfung
                 surface.SetDrawColor(255, 255, 255, 255) -- Set the draw color (R, G, B, A)
                 surface.DrawCircle(0, 0, GetConVar("Buben_Voice_Range_Whisper"):GetInt())
+                cam.IgnoreZ(false) -- Setze die Tiefenprüfung zurück
             cam.End3D2D()
 
         elseif Shout_is_Active == true then
 
             cam.Start3D2D(pos, ang, 1)
+                cam.IgnoreZ(true) -- Ignoriere die Tiefenprüfung
                 surface.SetDrawColor(255, 255, 255, 255) -- Set the draw color (R, G, B, A)
                 surface.DrawCircle(0, 0, GetConVar("Buben_Voice_Range_Shout"):GetInt())
+                cam.IgnoreZ(false) -- Setze die Tiefenprüfung zurück
             cam.End3D2D()
 
         end
@@ -160,8 +167,6 @@ end
 hook.Add("InitPostEntity", "Voice_Auto_Enable", Voice_Auto_Enable)
 hook.Add("TTT2Initialize", "voice_toggle/TTT2Initialize", Voice_Chat_Initialize)
 hook.Add("PostDrawOpaqueRenderables", "Draw Voice Range", Show_Voice_Range)
---hook.Add("PlayerButtonDown", "Special Voice Range Button Down", PlayerButtonDown_Whisper)
---hook.Add("PlayerButtonUp", "Special Voice Range Button Up", PlayerButtonUp_Whisper)
 
 net.Receive("Spieler_Tot_an_Client", Voice_Chat_Relode)
 net.Receive("Spieler_Spawn_an_Client", Voice_Chat_Relode)
