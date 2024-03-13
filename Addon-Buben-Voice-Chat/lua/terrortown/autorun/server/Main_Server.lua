@@ -1,4 +1,4 @@
-print("Buben Voice Chat v2.1.4 by Niklaskerl2001")
+print("Buben Voice Chat v2.1.5 by Niklaskerl2001")
 
 --------------------------------- Funktionen ---------------------------------
 
