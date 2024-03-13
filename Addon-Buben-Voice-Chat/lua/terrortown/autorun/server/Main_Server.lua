@@ -1,4 +1,4 @@
-print("Buben Voice Chat v2.1.4 by Niklaskerl2001")
+print("Buben Voice Chat v3.0.0 by Niklaskerl2001")
 
 --------------------------------- Funktionen ---------------------------------
 
@@ -56,7 +56,6 @@ hook.Add("PlayerSpawn", "Spieler Spawn", Spieler_Spawn_an_Client)
 hook.Add("PlayerButtonDown", "Special Voice Range Button Down", function(player, button)
     -- Wenn die Taste die gewünschte Taste ist (z.B. KEY_X für die B-Taste)
     if button == KEY_X then
-		print("Server Active")
         isSpecialVoiceRangeActive[player] = true
     end
 end)
@@ -65,7 +64,6 @@ end)
 hook.Add("PlayerButtonUp", "Special Voice Range Button Up", function(player, button)
     -- Wenn die Taste die gewünschte Taste ist
     if button == KEY_X then
-		print("Server Inactive")
         isSpecialVoiceRangeActive[player] = false
     end
 end)

@@ -6,7 +6,8 @@ local CV_Auto_Enable = CreateConVar("Buben_Voice_Auto_Enable", 0, { FCVAR_ARCHIV
 local CV_Hide_Panels_Alive = CreateConVar("Buben_Voice_Hide_Panels_Alive", 0, { FCVAR_ARCHIVE, FCVAR_REPLICATED }, "Hide the voice panels that show who else is talking when player is alive")
 local CV_Hide_Panels_Spectator = CreateConVar("Buben_Voice_Hide_Panels_Spectator", 0, { FCVAR_ARCHIVE, FCVAR_REPLICATED }, "Hide the voice panels that show who else is talking when player is Spectating")
 
-local Show_VoiceRange = false
+local Whisper_is_Active = false
+local Shout_is_Active = false
 
 --------------------------------- Funktionen ---------------------------------
 
@@ -72,6 +73,15 @@ function Voice_Chat_Initialize()
         KEY_X
     )
 
+    bind.Register(
+        "Voice_Shout",
+        PlayerButtonDown_Shout,
+        PlayerButtonUp_Shout,
+        "header_bindings_other",
+        "Label_Voice_Shout_Key",
+        KEY_G
+    )
+
     -- disable top-left voice panels that show who else is talking
     local old_PlayerStartVoice = GAMEMODE.PlayerStartVoice
     
@@ -102,27 +112,45 @@ end
 
 
 function PlayerButtonDown_Whisper()
-    Show_VoiceRange = true
+    Whisper_is_Active = true
 end
 
 function PlayerButtonUp_Whisper()
-    Show_VoiceRange = false
+    Whisper_is_Active = false
 end
 
+function PlayerButtonDown_Shout()
+    Shout_is_Active = true
+end
+
+function PlayerButtonUp_Shout()
+    Shout_is_Active = false
+end
 
 function Show_Voice_Range()
     
-    if Show_VoiceRange then
+    if Whisper_is_Active == true or Shout_is_Active == true then -- Wenn Flüstern oder Schreine aktiv ist
         local ply = LocalPlayer()
         local pos = ply:GetPos()
         local ang = Angle(0, 0, 0)
 
         pos.z = pos.z + 1 -- adjust z to draw just above the ground
 
-        cam.Start3D2D(pos, ang, 1)
-            surface.SetDrawColor(255, 255, 255, 255) -- Set the draw color (R, G, B, A)
-            surface.DrawCircle(0, 0, 500) -- Draw the circle with radius 500
-        cam.End3D2D()
+        if Whisper_is_Active == true and Shout_is_Active == false then 
+
+            cam.Start3D2D(pos, ang, 1)
+                surface.SetDrawColor(255, 255, 255, 255) -- Set the draw color (R, G, B, A)
+                surface.DrawCircle(0, 0, GetConVar("Buben_Voice_Range_Whisper"):GetInt())
+            cam.End3D2D()
+
+        elseif Shout_is_Active == true then
+
+            cam.Start3D2D(pos, ang, 1)
+                surface.SetDrawColor(255, 255, 255, 255) -- Set the draw color (R, G, B, A)
+                surface.DrawCircle(0, 0, GetConVar("Buben_Voice_Range_Shout"):GetInt())
+            cam.End3D2D()
+
+        end
     end
 end
 
