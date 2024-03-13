@@ -7,7 +7,7 @@ L["Label_Voice_Range_Whisper"] = "Voice Chat Range on Whispering"
 L["Label_Voice_Range_Normal"] = "Voice Chat Range on Normal"
 L["Label_Voice_Range_Shout"] = "Voice Chat Range on Shouting"
 L["Label_Proximity_Chat_Enable"] = "Enables 3D Voice Chat"
-L["Label_Proximity_Chat_Enable_Always"] = "Enables 3D Voice Chat Always"
+L["Label_Proximity_Chat_Enable_Always"] = "Enables 3D Voice Chat at round start / round end"
 
 L["Header_Voice_Toggle"] = "Voice Toggle Settings"
 L["Help_Voice_Hide_Panels"] = "Voice Chat Panels Display Settings"

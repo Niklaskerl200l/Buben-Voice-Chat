@@ -50,6 +50,7 @@ Through the Tab Menu, the volume of each player can be adjusted. Next to each na
 - Buben_Voice_Auto_Enable = 0
 - Buben_Voice_Hide_Panels_Alive = 0
 - Buben_Voice_Hide_Panels_Spectator = 0
+- Label_Proximity_Chat_Enable_Always= 0
 
 ## How to Install Addons
 

@@ -7,7 +7,7 @@ L["Label_Voice_Range_Whisper"] = "Reichweite des Voice-Chats auf Flüstern"
 L["Label_Voice_Range_Normal"] = "Reichweite des Voice-Chats auf Normale"
 L["Label_Voice_Range_Shout"] = "Reichweite des Voice-Chats auf Schreien"
 L["Label_Proximity_Chat_Enable"] = "3D-Voice-Chat Aktivieren"
-L["Label_Proximity_Chat_Enable_Always"] = "3D-Voice-Chat Aktivieren Immer"
+L["Label_Proximity_Chat_Enable_Always"] = "3D-Voice-Chat bei Rundenstart / Rundenende"
 
 L["Header_Voice_Toggle"] = "Sprachaktivierungs Einstellungen"
 L["Help_Voice_Hide_Panels"] = "Anzeigeeinstellungen der Voice-Chat-Panels der anderen Spieler (oben Links)"
