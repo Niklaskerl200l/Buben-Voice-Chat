@@ -2,9 +2,6 @@ print("Buben Voice Chat v2.1.3 by Niklaskerl2001")
 
 AddCSLuaFile()
 
-local CV_Auto_Enable = CreateConVar("Buben_Voice_Auto_Enable", 0, { FCVAR_ARCHIVE, FCVAR_REPLICATED }, "Automatically enable voice chat for players when they join")
-local CV_Hide_Panels_Alive = CreateConVar("Buben_Voice_Hide_Panels_Alive", 0, { FCVAR_ARCHIVE, FCVAR_REPLICATED }, "Hide the voice panels that show who else is talking when player is alive")
-local CV_Hide_Panels_Spectator = CreateConVar("Buben_Voice_Hide_Panels_Spectator", 0, { FCVAR_ARCHIVE, FCVAR_REPLICATED }, "Hide the voice panels that show who else is talking when player is Spectating")
 
 local Whisper_is_Active = false
 local Shout_is_Active = false
@@ -38,7 +35,7 @@ end
 
 
 function Voice_Auto_Enable()
-    if CV_Auto_Enable:GetBool() then 
+    if GetConVar("Buben_Voice_Auto_Enable"):GetBool() then 
         voice_enable() 
     end 
 end
@@ -65,8 +62,8 @@ function Voice_Chat_Initialize()
 
         old_PlayerStartVoice(self, ply)
 
-        if CV_Hide_Panels_Alive:GetBool() == false then return end
-        if CV_Hide_Panels_Spectator:GetBool() == false and client:IsSpec() then return end
+        if GetConVar("Buben_Voice_Hide_Panels_Alive"):GetBool() == false then return end
+        if GetConVar("Buben_Voice_Hide_Panels_Spectator"):GetBool() == false and client:IsSpec() then return end
 
         if IsValid(g_VoicePanelList) == false or IsValid(ply) == false then return end
 
