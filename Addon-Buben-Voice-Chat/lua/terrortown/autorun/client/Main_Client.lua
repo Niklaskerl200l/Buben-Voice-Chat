@@ -1,10 +1,6 @@
 print("Buben Voice Chat v2.1.3 by Niklaskerl2001")
 
-AddCSLuaFile()
-
-
-local Whisper_is_Active = false
-local Shout_is_Active = false
+--AddCSLuaFile()
 
 --------------------------------- Funktionen ---------------------------------
 
@@ -50,12 +46,16 @@ end
 
 
 
-function Voice_Chat_Initialize()
+function TTT2Initialize()
 
     Register_Keys_Client()
 
-    -- disable top-left voice panels that show who else is talking
-    local old_PlayerStartVoice = GAMEMODE.PlayerStartVoice
+    foo()
+end
+
+function foo(arguments)
+    
+    local old_PlayerStartVoice = GAMEMODE.PlayerStartVoice  -- disable top-left voice panels that show who else is talking
     
     function GAMEMODE:PlayerStartVoice(ply)
         local client = LocalPlayer()
@@ -112,31 +112,34 @@ end
 
 
 function PlayerButtonDown_Whisper()
-    Whisper_is_Active = true
+    print(GetConVar("Buben_Voice_Hide_Panels_Alive"):GetBool())
+    LocalPlayer():SetNWBool("Whisper", true)
 end
 
 function PlayerButtonUp_Whisper()
-    Whisper_is_Active = false
+    LocalPlayer():SetNWBool("Whisper", false)
 end
 
 function PlayerButtonDown_Shout()
-    Shout_is_Active = true
+    LocalPlayer():SetNWBool("Shout", true)
 end
 
 function PlayerButtonUp_Shout()
-    Shout_is_Active = false
+    LocalPlayer():SetNWBool("Shout", false)
 end
 
 function Show_Voice_Range()
+    local ply = LocalPlayer()
+    local Whisper = ply:GetNWBool("Whisper", false)
+    local Shout = ply:GetNWBool("Shout", false)
     
-    if Whisper_is_Active == true or Shout_is_Active == true then -- Wenn Flüstern oder Schreine aktiv ist
-        local ply = LocalPlayer()
+    if Whisper == true or Shout == true then
         local pos = ply:GetPos()
         local ang = Angle(0, 0, 0)
 
         pos.z = pos.z + 1 -- adjust z to draw just above the ground
 
-        if Whisper_is_Active == true and Shout_is_Active == false then 
+        if Whisper == true and Shout == false then 
 
             cam.Start3D2D(pos, ang, 1)
                 cam.IgnoreZ(true) -- Ignoriere die Tiefenprüfung
@@ -145,7 +148,7 @@ function Show_Voice_Range()
                 cam.IgnoreZ(false) -- Setze die Tiefenprüfung zurück
             cam.End3D2D()
 
-        elseif Shout_is_Active == true then
+        elseif Shout == true then
 
             cam.Start3D2D(pos, ang, 1)
                 cam.IgnoreZ(true) -- Ignoriere die Tiefenprüfung
@@ -162,7 +165,7 @@ end
 
 
 hook.Add("InitPostEntity", "Voice_Auto_Enable", Voice_Auto_Enable)
-hook.Add("TTT2Initialize", "voice_toggle/TTT2Initialize", Voice_Chat_Initialize)
+hook.Add("TTT2Initialize", "voice_toggle/TTT2Initialize", TTT2Initialize)
 hook.Add("PostDrawOpaqueRenderables", "Draw Voice Range", Show_Voice_Range)
 
 net.Receive("Spieler_Tot_an_Client", Voice_Chat_Relode)

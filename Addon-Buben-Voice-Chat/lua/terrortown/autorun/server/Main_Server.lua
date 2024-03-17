@@ -2,9 +2,17 @@ print("Buben Voice Chat v3.0.0 by Niklaskerl2001")
 
 --------------------------------- Funktionen ---------------------------------
 
-local isSpecialVoiceRangeActive = {}
+--local isSpecialVoiceRangeActive = {}
 
-function Proximity_Voice_Chat (listener,talker)
+function Proximity_Voice_Chat(listener,talker)
+	local distance = tonumber(listener:GetPos():Distance(talker:GetPos()))
+
+	print("listener: ")
+	print(listener:GetNWBool("Whisper"))
+
+	print("talker:")
+	print(talker:GetNWBool("Whisper"))
+
 	-- Wenn Runde nicht läuf hören sich alle & überall
 	if GetRoundState() ~= ROUND_ACTIVE then
 		return true, GetConVar("Buben_Proximity_Chat_Enable_Always"):GetBool()
@@ -22,7 +30,7 @@ function Proximity_Voice_Chat (listener,talker)
 	--	return false, false
 
 	-- Das sich die Spieler nicht höhren wenn sie zu weit weg sind
-	elseif (tonumber(listener:GetPos():Distance(talker:GetPos())) > (isSpecialVoiceRangeActive[talker] and 500 or tonumber(GetConVar("Buben_Voice_Range_Normal"):GetInt()))) then	--TODO
+	elseif (distance > (talker:GetNWBool("Whisper", false) and tonumber(GetConVar("Buben_Voice_Range_Whisper"):GetInt()) or talker:GetNWBool("Shout", false) and tonumber(GetConVar("Buben_Voice_Range_Shout"):GetInt()) or tonumber(GetConVar("Buben_Voice_Range_Normal"):GetInt()))) then	--TODO
 		--print(isSpecialVoiceRangeActive[talker])
 		return false, false
 
@@ -52,18 +60,18 @@ hook.Add("PlayerCanHearPlayersVoice","Proximity Chat", Proximity_Voice_Chat)
 hook.Add("PlayerDeath", "Spieler Tot", Spieler_Tot_an_Client)
 hook.Add("PlayerSpawn", "Spieler Spawn", Spieler_Spawn_an_Client)
 
--- Event, das ausgelöst wird, wenn der Spieler eine Taste drückt
-hook.Add("PlayerButtonDown", "Special Voice Range Button Down", function(player, button)
-    -- Wenn die Taste die gewünschte Taste ist (z.B. KEY_X für die B-Taste)
-    if button == KEY_X then
-        isSpecialVoiceRangeActive[player] = true
-    end
-end)
+-- --Event, das ausgelöst wird, wenn der Spieler eine Taste drückt
+-- hook.Add("PlayerButtonDown", "Special Voice Range Button Down", function(player, button)
+--     -- Wenn die Taste die gewünschte Taste ist (z.B. KEY_X für die B-Taste)
+--     if button == KEY_X then
+--         isSpecialVoiceRangeActive[player] = true
+--     end
+-- end)
 
--- Event, das ausgelöst wird, wenn der Spieler eine Taste loslässt
-hook.Add("PlayerButtonUp", "Special Voice Range Button Up", function(player, button)
-    -- Wenn die Taste die gewünschte Taste ist
-    if button == KEY_X then
-        isSpecialVoiceRangeActive[player] = false
-    end
-end)
+-- -- Event, das ausgelöst wird, wenn der Spieler eine Taste loslässt
+-- hook.Add("PlayerButtonUp", "Special Voice Range Button Up", function(player, button)
+--     -- Wenn die Taste die gewünschte Taste ist
+--     if button == KEY_X then
+--         isSpecialVoiceRangeActive[player] = false
+--     end
+-- end)
