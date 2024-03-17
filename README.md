@@ -4,7 +4,7 @@ Only compatible with [TTT2]
 
 Steam: [Buben Voice Chat](https://steamcommunity.com/sharedfiles/filedetails/?id=3157291533)
 
-Version: 2.1.3
+Version: 2.1.6
 
 # Settings Options via the F1 Menu
 

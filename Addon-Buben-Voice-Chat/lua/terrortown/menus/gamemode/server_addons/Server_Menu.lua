@@ -19,6 +19,11 @@ function CLGAMEMODESUBMENU:Populate(parent)
 	})
 
 	Form_Voice_Chat:MakeCheckBox({
+		serverConvar = "Buben_Voice_Range_Disable",
+		label = "Label_Voice_Range_Disable",
+	})
+
+	Form_Voice_Chat:MakeCheckBox({
 		serverConvar = "Buben_Proximity_Chat_Enable",
 		label = "Label_Proximity_Chat_Enable",
 	})

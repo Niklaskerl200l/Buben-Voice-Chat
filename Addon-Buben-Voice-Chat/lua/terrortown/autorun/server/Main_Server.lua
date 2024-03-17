@@ -1,4 +1,4 @@
-print("Buben Voice Chat v2.1.5 by Niklaskerl2001")
+print("Buben Voice Chat v2.1.6 by Niklaskerl2001")
 
 --------------------------------- Funktionen ---------------------------------
 
@@ -16,7 +16,7 @@ function Proximity_Voice_Chat (listener,talker)
 		return false, false
 
 	-- Das sich die Spieler nicht höhren wenn sie zu weit weg sind
-	elseif (tonumber( listener:GetPos():Distance( talker:GetPos() ) ) > tonumber( GetConVar("Buben_Max_Voice_Range"):GetInt())) then 
+	elseif GetConVar("Buben_Voice_Range_Disable"):GetBool() == false and (tonumber( listener:GetPos():Distance( talker:GetPos() ) ) > tonumber( GetConVar("Buben_Max_Voice_Range"):GetInt())) then 
 		return false, false
 
 	-- Das sich alle in der Runde höhren die in der Nähe sind

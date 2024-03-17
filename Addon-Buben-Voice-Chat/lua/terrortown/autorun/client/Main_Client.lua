@@ -1,4 +1,4 @@
-print("Buben Voice Chat v2.1.3 by Niklaskerl2001")
+print("Buben Voice Chat v2.1.6 by Niklaskerl2001")
 
 AddCSLuaFile()
 

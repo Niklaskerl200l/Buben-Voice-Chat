@@ -4,6 +4,7 @@ L["Title_Addons_Buben_Voice_Chat"] = "Buben Voice Chat"
 L["Header_Proximity_Voice_Chat"] = "Proximity Chat Voice Settings"
 L["Help_Proximity_Voice_Chat"] = "Use the sliders to configure the range for global voice chat"
 L["Label_Max_Voice_Range"] = "Voice Chat Range"
+L["Label_Voice_Range_Disable"] = "Disabel Voice Range (unlimited range)"
 L["Label_Proximity_Chat_Enable"] = "Enables 3D Voice Chat"
 L["Label_Proximity_Chat_Enable_Always"] = "Enables 3D Voice Chat at round start / round end"
 
